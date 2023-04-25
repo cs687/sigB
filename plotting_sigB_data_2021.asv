@@ -1,0 +1,24 @@
+function plotting_sigB_data_2021(varargin)
+
+date_in='2022-03-23';
+in_path='\\slcu.cam.ac.uk\data\Microscopy\TeamJL\Chris\movies\SigB';
+D=dir([in_path,'\20*']);
+
+%checking input
+if ~isempty(varargin)
+    for i = 1:2:length(varargin)
+        theparam = lower(varargin{i});
+        switch(strtok(theparam))
+            case 'what'
+                what_plot=varargin{i+1};
+        end
+    end
+end
+
+
+
+for i=1:length(D);
+    path_now=[in_path,'\',D(i).name,'\subAut']
+     p = initschnitz('Bacillus-01',date_in,'bacillus','rootDir',in_path,'imageDir',in_path);
+     plotting_MM_data_2021_11_01_v3(p,what_plot);
+     saveas()
